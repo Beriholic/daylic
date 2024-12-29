@@ -1,0 +1,34 @@
+{
+  "name": "daylic",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "server": "bun server/server.ts"
+  },
+  "dependencies": {
+    "@types/node-cron": "^3.0.11",
+    "actify": "^0.4.1",
+    "express": "^4.21.2",
+    "motion": "^11.15.0",
+    "next": "15.1.3",
+    "normalize.css": "^8.0.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tslog": "^4.9.3"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.3",
+    "@eslint/eslintrc": "^3"
+  }
+}
