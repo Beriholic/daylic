@@ -5,4 +5,3 @@ services:
       - 3000:3000
     environment:
       TOKEN: "" # get api from https://alapi.cn
-      NODE_ENV: production

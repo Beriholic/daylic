@@ -22,7 +22,7 @@ export default function Home() {
     <div className="flex flex-col w-full">
       <div className="bg-error-container rounded-3xl mx-4 my-6 lg:mx-72 lg:my-10">
         <h1 className="text-center text-on-error-container text-xl lg:text-2xl">
-          60 秒读懂世界
+          60 秒早报
         </h1>
         <div className="text-center pb-2 px-2 text-sm">{dailyDate.weiyu}</div>
       </div>
