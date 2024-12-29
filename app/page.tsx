@@ -7,7 +7,7 @@ export default function Home() {
   const [dailyDate, setDailyDate] = useState<DailyData | null>(null);
   useEffect(() => {
     const fetchDailyDate = async () => {
-      const res = await fetch("http://localhost:3000/api/daily", {
+      const res = await fetch("/api/daily", {
         method: "POST",
       })
         .then((res) => res.json())
