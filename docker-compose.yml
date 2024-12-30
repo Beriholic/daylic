@@ -3,5 +3,3 @@ services:
     image: beriholic/daylic:0.1.0
     ports:
       - 3000:3000
-    environment:
-      TOKEN: "" # get api from https://alapi.cn

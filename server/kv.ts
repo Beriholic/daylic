@@ -1,6 +1,6 @@
-import { DailyDataResponse } from "./model";
+import { DailyData } from "./model";
 
-class KV<T> {
+class KVCache<T> {
   private data: Map<string, T> = new Map();
 
   constructor() {}
@@ -20,6 +20,10 @@ class KV<T> {
   clear() {
     this.data.clear();
   }
+
+  has(key: string) {
+    return this.data.has(key);
+  }
 }
 
-export const dailyDataStore = new KV<DailyDataResponse>();
+export const dailyDataCache = new KVCache<DailyData>();

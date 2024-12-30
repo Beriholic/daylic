@@ -1,13 +1,32 @@
-export interface DailyDataResponse {
+export class RestResp {
   code: number;
   msg: string;
-  data: DailyData;
+  data: object | null;
+
+  constructor(code: number, msg: string) {
+    this.code = code;
+    this.msg = msg;
+    this.data = null;
+  }
+
+  setCode(code: number) {
+    this.code = code;
+    return this;
+  }
+  setMsg(msg: string) {
+    this.msg = msg;
+    return this;
+  }
+  setData(data: object) {
+    this.data = data;
+    return this;
+  }
 }
 
 export interface DailyData {
-  date: string;
   news: string[];
-  weiyu: string;
-  image: string;
-  head_image: string;
+  tip: string;
+  updated: number;
+  url: string;
+  cover: string;
 }

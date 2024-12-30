@@ -1,6 +1,6 @@
 "use client";
 import Card from "@/components/Card";
-import { DailyData } from "@/server/model";
+import { DailyData, RestResp } from "@/server/model";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -11,8 +11,11 @@ export default function Home() {
         method: "POST",
       })
         .then((res) => res.json())
-        .then((data) => data as DailyData);
-      setDailyDate(res);
+        .then((data) => data as RestResp);
+
+      if (res.code === 200) {
+        setDailyDate(res.data as DailyData);
+      }
     };
     fetchDailyDate();
   }, []);
@@ -24,7 +27,7 @@ export default function Home() {
         <h1 className="text-center text-on-error-container text-xl lg:text-2xl">
           60 秒早报
         </h1>
-        <div className="text-center pb-2 px-2 text-sm">{dailyDate.weiyu}</div>
+        <div className="text-center pb-2 px-2 text-sm">{dailyDate.tip}</div>
       </div>
       <div className="px-4">
         {dailyDate.news.map((news, index) => (
