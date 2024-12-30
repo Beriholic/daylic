@@ -27,7 +27,9 @@ export default function Home() {
         <h1 className="text-center text-on-error-container text-xl lg:text-2xl">
           60 秒早报
         </h1>
-        <div className="text-center pb-2 px-2 text-sm">{dailyDate.tip}</div>
+        <div className="text-center pb-2 px-2 text-sm text-on-error-container">
+          {dailyDate.tip}
+        </div>
       </div>
       <div className="px-4">
         {dailyDate.news.map((news, index) => (
