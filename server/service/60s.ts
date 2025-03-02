@@ -1,5 +1,4 @@
 import { dailyDataCache as cache } from "../kv";
-import logger from "../logger";
 import { DailyData } from "../model";
 
 interface Response {
@@ -31,19 +30,19 @@ export async function fetchDailyData() {
 
   let cacheData = cache.get(today);
 
-  if (cacheData === undefined) {
-    const data = await fetch(api)
-      .then((res) => res.json())
-      .then((data) => data as Response);
+  if (cacheData) return cacheData;
 
-    if (data.status !== 200) {
-      throw new Error(data.message);
-    }
-    logger.info(`cache build, data for ${today}`);
-    cache.clear();
-    cache.set(today, data.data);
-    cacheData = data.data;
+  const data = await fetch(api)
+    .then((res) => res.json())
+    .then((data) => data as Response);
+
+  if (data.status !== 200) {
+    console.error(`fetch daily data error: ${data.message}`);
+    return null;
   }
-
+  console.info(`cache build, data for ${today}`);
+  cache.clear();
+  cache.set(today, data.data);
+  cacheData = data.data;
   return cacheData;
 }

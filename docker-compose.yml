@@ -1,5 +1,5 @@
 services:
   daylic:
-    image: beriholic/daylic:0.1.0
+    image: beriholic/daylic:0.2.0
     ports:
       - 3000:3000

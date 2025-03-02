@@ -1,29 +1,23 @@
-FROM oven/bun:alpine AS base
-WORKDIR /usr/src/app
+FROM oven/bun:alpine as base
 
+FROM base as deps
+WORKDIR /app
+COPY package.json bun.lockb ./
+RUN bun install
 
-FROM base AS install
-RUN mkdir -p /temp/dev
-COPY package.json bun.lockb /temp/dev/
-RUN cd /temp/dev && bun install --frozen-lockfile
-
-RUN mkdir -p /temp/prod
-COPY package.json bun.lockb /temp/prod/
-RUN cd /temp/prod && bun install --frozen-lockfile --production
-
-
-FROM base AS prerelease
-COPY --from=install /temp/dev/node_modules node_modules
+FROM base as builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-
-ENV NODE_ENV=production
 RUN bun run build
 
-FROM base AS release
-COPY --from=install /temp/prod/node_modules node_modules
-COPY --from=prerelease /usr/src/app/.next .next
-COPY --from=prerelease /usr/src/app/server server
-ENV NODE_ENV=production
-
+FROM base as runner
+WORKDIR /app
+ENV NODE_ENV production
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/static ./.next/static
 EXPOSE 3000
-ENTRYPOINT [ "bun","server/server.ts" ]
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
+CMD ["node", "server.js"]

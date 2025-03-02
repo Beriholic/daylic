@@ -10,7 +10,8 @@ const rewrites = async () => {
 };
 
 const nextConfig: NextConfig = {
-  rewrites
+  output: "standalone",
+  rewrites,
 };
 
 export default nextConfig;

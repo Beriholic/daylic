@@ -56,6 +56,15 @@ export default {
         "error-container": "var(--md-sys-color-error-container)",
         "on-error-container": "var(--md-sys-color-on-error-container)",
       },
+      keyframes: {
+        "fade-in": {
+          from: { opacity: "0", filter: "blur(10px)" },
+          to: { opacity: "1" },
+        },
+      },
+      animation: {
+        "fade-in": "fade-in 1s ease-in-out",
+      },
     },
   },
   plugins: [],
