@@ -1,7 +1,7 @@
 # [daylic](news.beriholic.xyz)
 Daily Morning Report
 
-# deploy
+## deploy
 ```
 dokcer run -it -d --name daylic -p 3000:3000 beriholic/daylic:0.2.0
 ```
